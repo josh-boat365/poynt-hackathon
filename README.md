@@ -49,11 +49,9 @@ transactions
 	order
 	status (pending, success, failed)
 
-# Zakvote [![CI](https://github.com/jjbofficial/zakvote/actions/workflows/laravel.yml/badge.svg?branch=main)](https://github.com/jjbofficial/zakvote/actions/workflows/laravel.yml)
-
 ## Local set-up instructions
-* Set-up with composer
-* Set-up using Docker(sail)
+* [Set-up with composer](#set-up-using-composer)
+* [Set-up using Docker(sail)](#set-up-using-sail)
 
 
 ## Set-up using composer
@@ -153,4 +151,4 @@ sail artisan migrate --seed
 
 
 
-* API Documentation 
+* [API Documentation](https://documenter.getpostman.com/view/16424228/2s9YsGhDL7#1d221d69-29e3-49da-b131-4e13f67a8405)
