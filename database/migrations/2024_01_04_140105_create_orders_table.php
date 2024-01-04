@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->dateTime('order_date');
+            $table->string('status')->default('pending');
+            $table->string('refference');
             $table->timestamps();
         });
     }

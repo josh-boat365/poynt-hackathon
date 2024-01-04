@@ -14,7 +14,6 @@ categories
  name
 
 orders
- user_id
  date
  status ( pending -- person has not paid
  	  proccessing -- person has paid
