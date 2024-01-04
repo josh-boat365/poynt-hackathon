@@ -46,6 +46,12 @@ class ProductFactory extends Factory
 
         return $randomFile;
         
-        return "";
+    }
+
+    public function retriveURL() {
+       //encode image in base64
+       $image = "data:image/jpg;base64,".base64_encode( $this->fetchImage());
+
+       return $image;
     }
 }
