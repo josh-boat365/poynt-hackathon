@@ -1,13 +1,3 @@
-products
-  name
-  price
-  descript
-  category
-
-product_images
-   product_id
-   image
-
 users
  name
  email
@@ -15,10 +5,20 @@ users
  password
  role
 
-
 categories
  name
  image
+
+products
+  name
+  price
+  descript
+  category_id
+
+product_images
+   product_id
+   image
+
 
 orders
  user_id
