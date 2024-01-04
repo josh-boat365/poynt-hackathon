@@ -32,7 +32,7 @@ class ProductFactory extends Factory
                 "Fan",
             ]),
             'image' => $this->fetchImage(),
-            'price' => $this->faker->integer(),
+            'price' => $this->faker->randomNumber(4, false),
             'description' => $this->faker->sentence(),
             'category_id' => Category::factory(),
         ];
@@ -46,5 +46,6 @@ class ProductFactory extends Factory
 
         return $randomFile;
         
+        return "";
     }
 }
