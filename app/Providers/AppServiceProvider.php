@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->register(OrderService::class, fn() => new OrderService(app(Request::class)));
+        $this->app->bind(OrderService::class, fn() => new OrderService(app(Request::class)));
     }
 
     /**

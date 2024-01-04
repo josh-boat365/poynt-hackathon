@@ -68,9 +68,20 @@ class OrderController extends Controller
         //
     }
 
-    public function confirmOrder(OrderService $orderService): JsonResponse
+    public function confirmOrder(Request $request, OrderService $orderService): JsonResponse
     {
-        if (request()->header('x-paystack-signature') !== hash_hmac('sha512', request()->getContent(), config('paystack.secretKey'))) abort(401);
-        return $orderService->confirmOrder();
+        $signature = request()->header('x-paystack-signature');
+        $body = request()->getContent();
+
+        if ($signature !== hash_hmac('sha512', $body, config('paystack.secretKey')))
+            abort(401);
+
+        if (!$request->event == "charge.success") {
+            return response()->json(status: Response::HTTP_OK);
+        }
+
+        $orderService->confirmOrder($request->data);
+
+        return response()->json(status: Response::HTTP_OK);
     }
 }

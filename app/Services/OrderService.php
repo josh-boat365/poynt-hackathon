@@ -6,26 +6,20 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class OrderService 
+class OrderService
 {
-    public function __construct(protected Request $request)
+    public function __construct()
     {
-        
     }
 
 
-    public function confirmOrder()
+    public function confirmOrder($data)
     {
-        // verify signature
-
-        if (!$this->request->event == "paymentrequest.success"  && !$this->request->data->paid) {
-            return response()->json(status: Response::HTTP_BAD_REQUEST);
-        }
         Order::query()
-        ->where('refference', $this->request->customer)
-        ->update([
-         "status" => "success",
-        ]); 
-        return response()->json(status: Response::HTTP_OK);
+            ->where('refference', $data['reference'])
+            ->update([
+                "status" => "success",
+            ]);
+
     }
 }
