@@ -14,15 +14,15 @@ class OrderConfirmedMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public string $reference;
+    public string $reference = '';
 
-    public string $url;
+    public string $url = '';
     /**
      * Create a new message instance.
      */
     public function __construct(private Order $order)
     {
-        $this->reference = $order->reference;
+        $this->reference = $order->refference;
         $this->url = 'https://google.com'; // fake url for now
     }
 

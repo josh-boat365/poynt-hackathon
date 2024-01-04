@@ -20,6 +20,10 @@ class OrderService
             ->where('refference', $data['reference'])
             ->first();
 
+        if($order->status != 'pending') {
+            return;
+        }
+
         if ($order) {
             $order->update(['status' => 'success']);
             event(new PaymentConfirmed($order));
