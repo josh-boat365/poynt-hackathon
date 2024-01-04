@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\PaymentConfirmed;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -15,11 +16,13 @@ class OrderService
 
     public function confirmOrder($data)
     {
-        Order::query()
+        $order = Order::query()
             ->where('refference', $data['reference'])
-            ->update([
-                "status" => "success",
-            ]);
+            ->first();
 
+        if ($order) {
+            $order->update(['status' => 'success']);
+            event(new PaymentConfirmed($order));
+        }
     }
 }
