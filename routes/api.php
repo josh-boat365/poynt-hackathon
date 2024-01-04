@@ -3,6 +3,7 @@
 use App\Http\Controllers\V1\CategoryController;
 
 use App\Http\Controllers\V1\OrderController;
+use App\Http\Controllers\V1\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
