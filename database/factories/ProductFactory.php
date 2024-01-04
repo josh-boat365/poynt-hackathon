@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
@@ -37,7 +38,13 @@ class ProductFactory extends Factory
         ];
     }
 
-    public function fetchImage(): string {
+    public function fetchImage() {
+        $directory = public_path('images');
+        $files = Storage::allFiles($directory); 
+
+        $randomFile = $files[array_rand($files)];
+
+        return $randomFile;
         
     }
 }
