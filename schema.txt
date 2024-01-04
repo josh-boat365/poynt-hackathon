@@ -1,24 +1,17 @@
-users
- name
- email
- phone_number
- password
- role
-
-categories
- name
- image
-
 products
   name
   price
   descript
-  category_id
+  category
 
-product_images
-   product_id
-   image
 
+view all products
+  make an order
+  confirm an order
+  order history
+
+categories
+ name
 
 orders
  user_id
@@ -27,22 +20,18 @@ orders
  	  proccessing -- person has paid
  	  completed -- person has recieved product
  	  cancelled )
- 	  
-  
+ refference
 
 order_items
 	product_id
 	quantity
 	amount
 	order_id
+	
+	0550465600 David
+	
+	
 
-transactions
-	description
-	amount
-	refference
-	metadata - json
-	user_id
-	order
-	status (pending, success, failed)
+
 
 	
