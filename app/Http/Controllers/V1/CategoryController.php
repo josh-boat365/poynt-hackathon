@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\CategoryResource;
+
 use App\Models\Category;
+
 
 class CategoryController extends Controller
 {
@@ -13,7 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return CategoryResource::collection(
+            Category::all()
+        );
     }
 
     /**
