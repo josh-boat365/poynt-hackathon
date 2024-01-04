@@ -9,5 +9,9 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'order_date',
+        'status',
+        'reference'
+    ] ;
 }
