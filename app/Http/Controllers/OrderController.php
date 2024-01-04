@@ -1,7 +1,6 @@
 <?php
 
-
-namespace App\Http\Controllers\V1;
+namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
@@ -10,10 +9,6 @@ use App\Services\OrderService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Controllers\Controller;
-use App\Models\OrderItem;
-use App\Models\Product;
-
 
 class OrderController extends Controller
 {
@@ -22,9 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-
-
-
+        //
     }
 
     /**
@@ -32,8 +25,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-
-
+        //
     }
 
     /**
@@ -41,31 +33,7 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-
-        $order = Order::create([
-            'order_date' => now(),
-            'reference' => uniqid(),
-            'status' => 'pending',
-        ]);
-        foreach ($request->products as $product) {
-
-            $productModel = Product::find($product['product_id']);
-
-            if($productModel) {
-
-                OrderItem::create([
-                    'product_id' => $product['product_id'],
-                    'quantity' => $product['quantity'],
-                    'amount'    => $productModel->price * (float) $product['quantity'],
-                    'order_id' => $order->id,
-                ]);
-            }
-
-        }
-
-        return [
-            "reference" => $order->reference
-        ];
+        //
     }
 
     /**
@@ -73,16 +41,15 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Order $order){
-
-
+    public function edit(Order $order)
+    {
+        //
     }
 
     /**
@@ -90,10 +57,7 @@ class OrderController extends Controller
      */
     public function update(UpdateOrderRequest $request, Order $order)
     {
-
-        $order->update($request->all());
-        return redirect()->route("order")->with("success","Order Updated Sucessfully");
-
+        //
     }
 
     /**
@@ -101,10 +65,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-
-        $order->delete();
-        return redirect()->route("order")->with("success","Order Deleted Successfully");
-
+        //
     }
 
     public function confirmOrder(Request $request, OrderService $orderService): JsonResponse
