@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
+use App\Services\OrderService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class OrderController extends Controller
 {
@@ -62,5 +66,11 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function confirmOrder(OrderService $orderService): JsonResponse
+    {
+        if (request()->header('x-paystack-signature') !== hash_hmac('sha512', request()->getContent(), config('paystack.secretKey'))) abort(401);
+        return $orderService->confirmOrder();
     }
 }
