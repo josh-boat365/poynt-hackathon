@@ -2,52 +2,35 @@
 This is a an ecommerce api using Laravel 
 
 # Api Schema 
-## Products
+## products
     name
+    image
     price
-    descript
-    category
+    description
+    category_id
 
-product_images
-   product_id
-   image
+## product_images
+    product_id
+    image
 
-users
- name
- email
- phone_number
- password
- role
+## categories
+    name
+    image
 
-
-categories
- name
- image
-
-orders
- user_id
- date
- status ( pending -- person has not paid
- 	  proccessing -- person has paid
- 	  completed -- person has recieved product
- 	  cancelled )
+## orders
+    order_date
+    status ( pending -- person has not paid
+        proccessing -- person has paid
+        completed -- person has recieved product
+        cancelled )
+    reference
  	  
-  
+## order_items
+    product_id
+    quantity
+    amount
+    order_id
 
-order_items
-	product_id
-	quantity
-	amount
-	order_id
-
-transactions
-	description
-	amount
-	refference
-	metadata - json
-	user_id
-	order
-	status (pending, success, failed)
 
 ## Local set-up instructions
 * [Set-up with composer](#set-up-using-composer)
