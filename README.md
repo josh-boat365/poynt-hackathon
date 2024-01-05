@@ -54,6 +54,11 @@ git clone git@github.com:josh-boat365/poynt-hackathon.git
 ```
 composer install
 ```
+or 
+
+```
+composer update
+```
 <br>
 
 ### Create .env file
