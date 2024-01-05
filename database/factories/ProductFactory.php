@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Category;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -31,7 +32,7 @@ class ProductFactory extends Factory
                 "Headset",
                 "Fan",
             ]),
-            'image' => $this->fetchImage(),
+            'image' => $this->retriveURL(),
             'price' => $this->faker->randomNumber(4, false),
             'description' => $this->faker->sentence(),
             'category_id' => Category::factory(),
@@ -39,19 +40,30 @@ class ProductFactory extends Factory
     }
 
     public function fetchImage() {
-        $directory = public_path('images');
-        $files = Storage::allFiles($directory); 
+
+        $files = Storage::disk('public')->files('images'); 
+
+        // dd($files);
 
         $randomFile = $files[array_rand($files)];
 
-        return $randomFile;
+        // dd(str_replace('images/','',$randomFile));/
+
+
+        return file_get_contents(storage_path('app\public\images\\'.str_replace('images/','',$randomFile)));
+        // return $randomFile;
         
     }
 
     public function retriveURL() {
        //encode image in base64
-       $image = "data:image/jpg;base64,".base64_encode( $this->fetchImage());
+       $result = Http::withBody(
+            base64_encode($this->fetchImage()), 'image/jpeg'
+        )->post('https://914c-154-160-27-206.ngrok-free.app/image/upload');
 
-       return $image;
+        logger()->info($result->json());
+
+       return $result->json('imagePath');
+
     }
 }
